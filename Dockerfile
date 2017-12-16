@@ -1,4 +1,5 @@
 FROM lamtev/cxx:latest
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y software-properties-common \
 	&& apt-add-repository -y ppa:beineri/opt-qt593-xenial
@@ -12,4 +13,4 @@ RUN apt-get update && apt-get install -y \
 		qt59quickcontrols2\
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV PATH /opt/qt5/bin:$PATH
+ENV PATH /opt/qt59/bin:$PATH
