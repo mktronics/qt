@@ -18,6 +18,10 @@ RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
 		qt59script \
 		qt59quickcontrols \
 		qt59quickcontrols2 \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& git clone http://code.qt.io/cgit/installer-framework/installer-framework.git/ qtIF \
+	&& cd ./qtIF \
+	&& qmake \
+	&& make
 
 ENV PATH /opt/qt59/bin:$PATH
