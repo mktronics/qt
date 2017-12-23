@@ -21,6 +21,7 @@ RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
+ENV LD_LIBRARY_PATH="/opt/qt59/lib/"
 
 RUN git clone http://code.qt.io/cgit/installer-framework/installer-framework.git/ qtIF \
 	&& cd ./qtIF \
