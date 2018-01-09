@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y software-properties-common \
 	&& apt-add-repository -y ppa:beineri/opt-qt593-xenial
 
 RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
+		qtbase5-dev \
+		qtdeclarative5-dev \
 		dialog apt-utils \
 		libgl1-mesa-dev \
 		libgl1-mesa-glx \
