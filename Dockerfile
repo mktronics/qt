@@ -5,8 +5,6 @@ RUN apt-get update && apt-get install -y software-properties-common \
 	&& apt-add-repository -y ppa:beineri/opt-qt593-xenial
 
 RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
-		qtbase5-dev \
-		qtdeclarative5-dev \
 		dialog apt-utils \
 		libgl1-mesa-dev \
 		libgl1-mesa-glx \
@@ -23,7 +21,7 @@ RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
-ENV LD_LIBRARY_PATH /opt/qt59/lib/
+ENV LD_LIBRARY_PATH /opt/qt59/lib:$LD_LIBRARY_PATH
 #qmake -r and for loop between qmake and make
 #for i in `find . -name Makefile` ; do cat $i | sed 's/-lpthread/-lpthread -lutil/' > /tmp/$$ ; mv /tmp/$$ $i  ; done
 
