@@ -25,7 +25,7 @@ RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
   	&& apt-get download fuse \
   	&& dpkg-deb -x fuse_* . \
   	&& dpkg-deb -e fuse_* \
-  	&& rm fuse_*.deb &&\
+  	&& rm fuse_*.deb \
   	&& echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst \
   	&& dpkg-deb -b . /fuse.deb \
 	&& dpkg -i /fuse.deb
