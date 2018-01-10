@@ -19,16 +19,20 @@ RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
 		qt59script \
 		qt59quickcontrols \
 		qt59quickcontrols2 \
-		libfuse2 \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Fake a fuse install
-RUN cd /tmp ; apt-get download fuse
-RUN cd /tmp ; dpkg-deb -x fuse_* .
-RUN cd /tmp ; dpkg-deb -e fuse_*
-RUN cd /tmp ; rm fuse_*.deb
-RUN cd /tmp ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
-RUN cd /tmp ; dpkg-deb -b . /fuse.deb
-RUN cd /tmp ; dpkg -i /fuse.deb
-
 ENV PATH /opt/qt59/bin:$PATH
+
+# Fake a fuse install
+# from https://gist.github.com/henrik-muehe/6155333/e35981031bad80ada4cbf1e4a48ba7f86a019db4
+# see https://github.com/dotcloud/docker/issues/2191
+RUN apt-get install libfuse2
+RUN cd /tmp &&\
+  	apt-get download fuse &&\
+  	dpkg-deb -x fuse_* . &&\
+  	dpkg-deb -e fuse_* &&\
+  	rm fuse_*.deb &&\
+  	echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst &&\
+  	dpkg-deb -b . /fuse.deb &&\
+	dpkg -i /fuse.deb
+
