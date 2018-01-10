@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y software-properties-common \
 	&& apt-add-repository -y ppa:beineri/opt-qt593-xenial
 
 
-RUN apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
+RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
+	&& apt-get update && echo y | apt-get dist-upgrade && apt-get install -y \
 		dialog apt-utils \
 		libgl1-mesa-dev \
 		libgl1-mesa-glx \
