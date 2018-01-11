@@ -9,26 +9,15 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
 		dialog apt-utils \
 		libgl1-mesa-dev \
 		libgl1-mesa-glx \
-		qt59-meta-full \
 		qt59base \
 		qt59declarative \
 		qt59tools \
-		qt59translations \
-		qt59declarative \
-		qt59svg \
-		qt59script \
-		qt59quickcontrols \
 		qt59quickcontrols2 \
 		libfuse2 \
-	&& cd /tmp \
-  	&& apt-get download fuse \
-  	&& dpkg-deb -x fuse_* . \
-  	&& dpkg-deb -e fuse_* \
-  	&& rm fuse_*.deb \
-  	&& echo '#!/bin/bash\nexit 0\n' -en > DEBIAN/postinst \
-  	&& dpkg-deb -b . /fuse.deb \
-	&& dpkg -i /fuse.deb
-	#&& rm -rf /var/lib/apt/lists/*
+		autoconf \
+		fuse \
+		psmisc \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
 
