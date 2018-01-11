@@ -27,8 +27,8 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
   	&& rm fuse_*.deb \
   	&& echo '#!/bin/bash\nexit 0\n' -en > DEBIAN/postinst \
   	&& dpkg-deb -b . /fuse.deb \
-	&& dpkg -i /fuse.deb \
-	&& rm -rf /var/lib/apt/lists/*
+	&& dpkg -i /fuse.deb
+	#&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
 
