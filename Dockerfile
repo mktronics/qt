@@ -1,5 +1,4 @@
 FROM lamtev/cxx:latest
-ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y software-properties-common \
 	&& apt-add-repository -y ppa:beineri/opt-qt593-xenial
@@ -21,7 +20,6 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
 		qt59quickcontrols \
 		qt59quickcontrols2 \
 		libfuse2 \
-	&& rm -rf /var/lib/apt/lists/* \
 	&& cd /tmp \
   	&& apt-get download fuse \
   	&& dpkg-deb -x fuse_* . \
@@ -29,7 +27,8 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
   	&& rm fuse_*.deb \
   	&& echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst \
   	&& dpkg-deb -b . /fuse.deb \
-	&& dpkg -i /fuse.deb
+	&& dpkg -i /fuse.deb \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
 
