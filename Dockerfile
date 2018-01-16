@@ -13,10 +13,7 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
 		qt59declarative \
 		qt59tools \
 		qt59quickcontrols2 \
-		libfuse2 \
-		autoconf \
-		fuse \
-		psmisc \
+		qtqt59multimedia \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
