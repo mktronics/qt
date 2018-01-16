@@ -13,7 +13,7 @@ RUN rm -rf /var/lib/update-notifier/package-data-downloads/partial/* \
 		qt59declarative \
 		qt59tools \
 		qt59quickcontrols2 \
-		qtqt59multimedia \
+		qt59multimedia \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/qt59/bin:$PATH
